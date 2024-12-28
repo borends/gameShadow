@@ -34,9 +34,9 @@ class Player(pygame.sprite.Sprite):
     def update(self):
         keys = pygame.key.get_pressed()
         self.vel_x = 0
-        if keys[pygame.K_LEFT]:
+        if keys[pygame.K_a]:
             self.vel_x = -5
-        if keys[pygame.K_RIGHT]:
+        if keys[pygame.K_d]:
             self.vel_x = 5
         if keys[pygame.K_SPACE] and self.on_ground and not self.dragging_box:
             self.vel_y = -15
