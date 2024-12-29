@@ -107,19 +107,19 @@ def main():
         for e in pygame.event.get(): # Обрабатываем события
             if e.type == QUIT:
                 raise SystemExit("QUIT")
-            if e.type == KEYDOWN and e.key == K_UP:
+            if e.type == KEYDOWN and e.key == K_w:
                 up = True
-            if e.type == KEYDOWN and e.key == K_LEFT:
+            if e.type == KEYDOWN and e.key == K_a:
                 left = True
-            if e.type == KEYDOWN and e.key == K_RIGHT:
+            if e.type == KEYDOWN and e.key == K_d:
                 right = True
 
 
-            if e.type == KEYUP and e.key == K_UP:
+            if e.type == KEYUP and e.key == K_w:
                 up = False
-            if e.type == KEYUP and e.key == K_RIGHT:
+            if e.type == KEYUP and e.key == K_d:
                 right = False
-            if e.type == KEYUP and e.key == K_LEFT:
+            if e.type == KEYUP and e.key == K_a:
                 left = False
 
         screen.blit(bg, (0,0))      # Каждую итерацию необходимо всё перерисовывать 
