@@ -1,0 +1,204 @@
+Index: main.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import pygame\r\nimport sys\r\n\r\n# Инициализация Pygame\r\npygame.init()\r\n\r\n# Параметры окна\r\nWIDTH, HEIGHT = 1280, 720\r\nscreen = pygame.display.set_mode((WIDTH, HEIGHT))\r\npygame.display.set_caption(\"Limbo Shadow\")\r\n\r\n# Цвета\r\nWHITE = (255, 255, 255)\r\nBLACK = (0, 0, 0)\r\nGRAY = (50, 50, 50)\r\n\r\n# ФПС\r\nFPS = 60\r\nclock = pygame.time.Clock()\r\n\r\n# Класс для игрока\r\nclass Player(pygame.sprite.Sprite):\r\n    def __init__(self):\r\n        super().__init__()\r\n        self.image = pygame.Surface((40, 60))\r\n        self.image.fill(WHITE)\r\n        self.rect = self.image.get_rect()\r\n        self.rect.center = (WIDTH // 2, HEIGHT // 2)\r\n        self.vel_x = 0\r\n        self.vel_y = 0\r\n        self.on_ground = False\r\n        self.dragging_box = False\r\n\r\n    def update(self):\r\n        keys = pygame.key.get_pressed()\r\n        self.vel_x = 0\r\n        if keys[pygame.K_a]:\r\n            self.vel_x = -5\r\n        if keys[pygame.K_d]:\r\n            self.vel_x = 5\r\n        if keys[pygame.K_SPACE] and self.on_ground and not self.dragging_box:\r\n            self.vel_y = -15\r\n            self.on_ground = False\r\n        if not self.on_ground:\r\n            self.vel_y += 1  # Гравитация\r\n\r\n        # Обновляем позицию игрока\r\n        self.rect.x += self.vel_x\r\n        self.rect.y += self.vel_y\r\n\r\n\r\n        if self.rect.bottom > HEIGHT:\r\n            self.rect.bottom = HEIGHT\r\n            self.on_ground = True\r\n            self.vel_y = 0\r\n\r\n\r\n\r\n# Класс для контейнера\r\nclass Container(pygame.sprite.Sprite):\r\n    def __init__(self, x, y):\r\n        super().__init__()\r\n        self.image = pygame.Surface((60, 60))\r\n        self.image.fill(BLACK)\r\n        self.rect = self.image.get_rect()\r\n        self.rect.topleft = (x, y)\r\n        self.vel_x = 0\r\n        self.vel_y = 0\r\n\r\n    def update(self):\r\n        self.vel_y += 1  # Гравитация\r\n\r\n        # Обновляем позицию контейнера\r\n        self.rect.x += self.vel_x\r\n        self.rect.y += self.vel_y\r\n\r\n        if self.rect.bottom > HEIGHT:\r\n            self.rect.bottom = HEIGHT\r\n            self.vel_y = 0\r\n\r\n# Создание групп спрайтов\r\nall_sprites = pygame.sprite.Group()\r\nplayer = Player()\r\nall_sprites.add(player)\r\n\r\ncontainers = pygame.sprite.Group()\r\ncontainer = Container(WIDTH // 3, HEIGHT - 200)\r\nall_sprites.add(container)\r\ncontainers.add(container)\r\n\r\n# Функция для отрисовки слоев\r\ndef draw_layers():\r\n    screen.fill(GRAY)  # Задний декоративный слой\r\n\r\n    for sprite in all_sprites:\r\n        screen.blit(sprite.image, sprite.rect)\r\n\r\n    pygame.draw.rect(screen, WHITE, (0, 0, WIDTH, 20))  # Передний декоративный слой\r\n\r\n# Главный игровой цикл\r\nrunning = True\r\nwhile running:\r\n    for event in pygame.event.get():\r\n        if event.type == pygame.QUIT:\r\n            running = False\r\n\r\n    keys = pygame.key.get_pressed()\r\n    if keys[pygame.K_e]:\r\n        if pygame.sprite.collide_rect(player, container):\r\n            player.dragging_box = True\r\n    else:\r\n        player.dragging_box = False\r\n\r\n    if player.dragging_box:\r\n        container.vel_x = player.vel_x\r\n    else:\r\n        container.vel_x = 0\r\n\r\n    # Проверка столкновения с игроком\r\n    if pygame.sprite.collide_mask(player, container):\r\n        if player.vel_x > 0:\r\n            player.rect.right = container.rect.left\r\n        elif player.vel_x < 0:\r\n            player.rect.left = container.rect.right\r\n\r\n    # Проверка если игрок стоит на контейнере\r\n    if player.vel_y >= 0 and player.rect.bottom <= container.rect.top and player.rect.right > container.rect.left and player.rect.left < container.rect.right:\r\n        player.rect.bottom = container.rect.top\r\n        player.on_ground = True\r\n        player.vel_y = container.vel_y\r\n    elif (player.rect.right <= container.rect.left or player.rect.left >= container.rect.right) and player.rect.bottom <= container.rect.top:\r\n        player.on_ground = False\r\n\r\n    all_sprites.update()\r\n    draw_layers()\r\n\r\n    pygame.display.flip()\r\n    clock.tick(FPS)\r\n\r\npygame.quit()\r\nsys.exit()\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/main.py b/main.py
+--- a/main.py	(revision 16e6549d224e428a981bb923ca3eab7722b939b5)
++++ b/main.py	(date 1735365089056)
+@@ -48,14 +48,11 @@
+         self.rect.x += self.vel_x
+         self.rect.y += self.vel_y
+ 
+-
+         if self.rect.bottom > HEIGHT:
+             self.rect.bottom = HEIGHT
+             self.on_ground = True
+             self.vel_y = 0
+ 
+-
+-
+ # Класс для контейнера
+ class Container(pygame.sprite.Sprite):
+     def __init__(self, x, y):
+@@ -78,6 +75,15 @@
+             self.rect.bottom = HEIGHT
+             self.vel_y = 0
+ 
++# Класс для платформы
++class Platform(pygame.sprite.Sprite):
++    def __init__(self, x, y, width, height):
++        super().__init__()
++        self.image = pygame.Surface((width, height))
++        self.image.fill(BLACK)
++        self.rect = self.image.get_rect()
++        self.rect.topleft = (x, y)
++
+ # Создание групп спрайтов
+ all_sprites = pygame.sprite.Group()
+ player = Player()
+@@ -88,6 +94,11 @@
+ all_sprites.add(container)
+ containers.add(container)
+ 
++platforms = pygame.sprite.Group()
++platform = Platform(WIDTH // 2 - 100, HEIGHT - 100, 200, 20)
++all_sprites.add(platform)
++platforms.add(platform)
++
+ # Функция для отрисовки слоев
+ def draw_layers():
+     screen.fill(GRAY)  # Задний декоративный слой
+@@ -130,6 +141,17 @@
+         player.vel_y = container.vel_y
+     elif (player.rect.right <= container.rect.left or player.rect.left >= container.rect.right) and player.rect.bottom <= container.rect.top:
+         player.on_ground = False
++
++    # Проверка столкновения с платформой
++    if pygame.sprite.spritecollide(player, platforms, False):
++        for platform in platforms:
++            if player.vel_y >= 0 and player.rect.bottom <= platform.rect.top and player.rect.right > platform.rect.left and player.rect.left < platform.rect.right:
++                player.rect.bottom = platform.rect.top
++                player.on_ground = True
++                player.vel_y = platform.vel_y
++            elif (
++                    player.rect.right <= platform.rect.left or player.rect.left >= platform.rect.right) and player.rect.bottom <= platform.rect.top:
++                player.on_ground = False
+ 
+     all_sprites.update()
+     draw_layers()
+@@ -139,4 +161,3 @@
+ 
+ pygame.quit()
+ sys.exit()
+-
+Index: .idea/gameShadow.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<module type=\"PYTHON_MODULE\" version=\"4\">\r\n  <component name=\"NewModuleRootManager\">\r\n    <content url=\"file://$MODULE_DIR$\">\r\n      <excludeFolder url=\"file://$MODULE_DIR$/.venv\" />\r\n    </content>\r\n    <orderEntry type=\"jdk\" jdkName=\"Python 3.11 (gameShadow)\" jdkType=\"Python SDK\" />\r\n    <orderEntry type=\"sourceFolder\" forTests=\"false\" />\r\n  </component>\r\n</module>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/gameShadow.iml b/.idea/gameShadow.iml
+--- a/.idea/gameShadow.iml	(revision 16e6549d224e428a981bb923ca3eab7722b939b5)
++++ b/.idea/gameShadow.iml	(date 1735362462683)
+@@ -4,7 +4,7 @@
+     <content url="file://$MODULE_DIR$">
+       <excludeFolder url="file://$MODULE_DIR$/.venv" />
+     </content>
+-    <orderEntry type="jdk" jdkName="Python 3.11 (gameShadow)" jdkType="Python SDK" />
++    <orderEntry type="inheritedJdk" />
+     <orderEntry type="sourceFolder" forTests="false" />
+   </component>
+ </module>
+\ No newline at end of file
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"9ef8394e-7493-48e6-8ca4-31fc7db042b1\" name=\"Changes\" comment=\"\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/gameShadow.iml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/gameShadow.iml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/misc.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/misc.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"GitHubPullRequestSearchHistory\"><![CDATA[{\r\n  \"lastFilter\": {\r\n    \"state\": \"OPEN\",\r\n    \"assignee\": \"MegaChel228\"\r\n  }\r\n}]]></component>\r\n  <component name=\"GithubPullRequestsUISettings\"><![CDATA[{\r\n  \"selectedUrlAndAccountId\": {\r\n    \"url\": \"https://github.com/borends/gameShadow.git\",\r\n    \"accountId\": \"bba2530f-b8b7-4bac-8d89-5d1b85cc5194\"\r\n  }\r\n}]]></component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 0\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2qncow15bCeuMHQE5PUrBsOwlpO\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"Python.main.executor\": \"Debug\",\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"RunOnceActivity.git.unshallow\": \"true\",\r\n    \"git-widget-placeholder\": \"master\"\r\n  }\r\n}]]></component>\r\n  <component name=\"RunManager\">\r\n    <configuration name=\"main\" type=\"PythonConfigurationType\" factoryName=\"Python\" nameIsGenerated=\"true\">\r\n      <module name=\"gameShadow\" />\r\n      <option name=\"ENV_FILES\" value=\"\" />\r\n      <option name=\"INTERPRETER_OPTIONS\" value=\"\" />\r\n      <option name=\"PARENT_ENVS\" value=\"true\" />\r\n      <envs>\r\n        <env name=\"PYTHONUNBUFFERED\" value=\"1\" />\r\n      </envs>\r\n      <option name=\"SDK_HOME\" value=\"\" />\r\n      <option name=\"WORKING_DIRECTORY\" value=\"$PROJECT_DIR$\" />\r\n      <option name=\"IS_MODULE_SDK\" value=\"true\" />\r\n      <option name=\"ADD_CONTENT_ROOTS\" value=\"true\" />\r\n      <option name=\"ADD_SOURCE_ROOTS\" value=\"true\" />\r\n      <option name=\"SCRIPT_NAME\" value=\"$PROJECT_DIR$/main.py\" />\r\n      <option name=\"PARAMETERS\" value=\"\" />\r\n      <option name=\"SHOW_COMMAND_LINE\" value=\"false\" />\r\n      <option name=\"EMULATE_TERMINAL\" value=\"false\" />\r\n      <option name=\"MODULE_MODE\" value=\"false\" />\r\n      <option name=\"REDIRECT_INPUT\" value=\"false\" />\r\n      <option name=\"INPUT_FILE\" value=\"\" />\r\n      <method v=\"2\" />\r\n    </configuration>\r\n  </component>\r\n  <component name=\"SharedIndexes\">\r\n    <attachedChunks>\r\n      <set>\r\n        <option value=\"bundled-python-sdk-495700d161d3-aa17d162503b-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-243.22562.220\" />\r\n      </set>\r\n    </attachedChunks>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"9ef8394e-7493-48e6-8ca4-31fc7db042b1\" name=\"Changes\" comment=\"\" />\r\n      <created>1735301957815</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1735301957815</updated>\r\n    </task>\r\n    <servers />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 16e6549d224e428a981bb923ca3eab7722b939b5)
++++ b/.idea/workspace.xml	(date 1735364334141)
+@@ -1,10 +1,14 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
++  <component name="AutoImportSettings">
++    <option name="autoReloadType" value="SELECTIVE" />
++  </component>
+   <component name="ChangeListManager">
+     <list default="true" id="9ef8394e-7493-48e6-8ca4-31fc7db042b1" name="Changes" comment="">
+       <change beforePath="$PROJECT_DIR$/.idea/gameShadow.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gameShadow.iml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -14,18 +18,6 @@
+   <component name="Git.Settings">
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+   </component>
+-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+-  "lastFilter": {
+-    "state": "OPEN",
+-    "assignee": "MegaChel228"
+-  }
+-}]]></component>
+-  <component name="GithubPullRequestsUISettings"><![CDATA[{
+-  "selectedUrlAndAccountId": {
+-    "url": "https://github.com/borends/gameShadow.git",
+-    "accountId": "bba2530f-b8b7-4bac-8d89-5d1b85cc5194"
+-  }
+-}]]></component>
+   <component name="ProjectColorInfo">{
+   &quot;associatedIndex&quot;: 0
+ }</component>
+@@ -37,40 +29,15 @@
+   </component>
+   <component name="PropertiesComponent"><![CDATA[{
+   "keyToString": {
+-    "Python.main.executor": "Debug",
++    "Python.main.executor": "Run",
+     "RunOnceActivity.ShowReadmeOnStart": "true",
+-    "RunOnceActivity.git.unshallow": "true",
+     "git-widget-placeholder": "master"
+   }
+ }]]></component>
+-  <component name="RunManager">
+-    <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+-      <module name="gameShadow" />
+-      <option name="ENV_FILES" value="" />
+-      <option name="INTERPRETER_OPTIONS" value="" />
+-      <option name="PARENT_ENVS" value="true" />
+-      <envs>
+-        <env name="PYTHONUNBUFFERED" value="1" />
+-      </envs>
+-      <option name="SDK_HOME" value="" />
+-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+-      <option name="IS_MODULE_SDK" value="true" />
+-      <option name="ADD_CONTENT_ROOTS" value="true" />
+-      <option name="ADD_SOURCE_ROOTS" value="true" />
+-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
+-      <option name="PARAMETERS" value="" />
+-      <option name="SHOW_COMMAND_LINE" value="false" />
+-      <option name="EMULATE_TERMINAL" value="false" />
+-      <option name="MODULE_MODE" value="false" />
+-      <option name="REDIRECT_INPUT" value="false" />
+-      <option name="INPUT_FILE" value="" />
+-      <method v="2" />
+-    </configuration>
+-  </component>
+   <component name="SharedIndexes">
+     <attachedChunks>
+       <set>
+-        <option value="bundled-python-sdk-495700d161d3-aa17d162503b-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-243.22562.220" />
++        <option value="bundled-python-sdk-0e3be3396995-c546a90a8094-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-242.23339.19" />
+       </set>
+     </attachedChunks>
+   </component>
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"Black\">\r\n    <option name=\"sdkName\" value=\"Python 3.11 (gameShadow)\" />\r\n  </component>\r\n  <component name=\"ProjectRootManager\" version=\"2\" project-jdk-name=\"Python 3.11 (gameShadow)\" project-jdk-type=\"Python SDK\" />\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+--- a/.idea/misc.xml	(revision 16e6549d224e428a981bb923ca3eab7722b939b5)
++++ b/.idea/misc.xml	(date 1735364161732)
+@@ -1,7 +1,7 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+   <component name="Black">
+-    <option name="sdkName" value="Python 3.11 (gameShadow)" />
++    <option name="sdkName" value="Python 3.12 (gameShadow)" />
+   </component>
+-  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.11 (gameShadow)" project-jdk-type="Python SDK" />
++  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.12 (gameShadow)" project-jdk-type="Python SDK" />
+ </project>
+\ No newline at end of file
