@@ -11,7 +11,7 @@ from blocks import *
 WIN_WIDTH = 1280 #Ширина создаваемого окна
 WIN_HEIGHT = 720 # Высота
 DISPLAY = (WIN_WIDTH, WIN_HEIGHT) # Группируем ширину и высоту в одну переменную
-BACKGROUND_COLOR = "#004400"
+BACKGROUND_COLOR = "#FFFFFF"
 
 class Camera(object):
     def __init__(self, camera_func, width, height):
@@ -45,13 +45,16 @@ def main():
                                          # будем использовать как фон
     bg.fill(Color(BACKGROUND_COLOR))     # Заливаем поверхность сплошным цветом
     
-    hero = Player(55,55) # создаем героя по (x,y) координатам
+    hero = Player(100,55) # создаем героя по (x,y) координатам
     left = right = False # по умолчанию - стоим
     up = False
     
     entities = pygame.sprite.Group() # Все объекты
     platforms = [] # то, во что мы будем врезаться или опираться
-    
+    jumppads = []
+    grass = []
+    creates = [] # то, во что мы будем врезаться или опираться
+
     entities.add(hero)
            
     level = [
@@ -75,9 +78,9 @@ def main():
        "-                                                 -",
        "-                                                 -",
        "-                                                 -",
-       "-                                                 -",
-       "-                                                 -",
-       "-                                                 -",
+       "-                       LGGGGR                    -",
+       "-                  LGGGG------                    -",
+       "-GGGGGGGGGGGGGGGGGG-----------GGGGGGGGGGGGGGGGGGGG-",
        "---------------------------------------------------"]
        
     timer = pygame.time.Clock()
@@ -88,10 +91,14 @@ def main():
                 pf = Platform(x,y)
                 entities.add(pf)
                 platforms.append(pf)
-            if col == "#":
-                pf = Ramp(x,y)
+            if col == "C":
+                pf = Creates(x,y)
                 entities.add(pf)
-                platforms.append(pf)
+                creates.append(pf)
+            if col == "G":
+                pf = Grass(x,y)
+                entities.add(pf)
+                grass.append(pf)
 
             x += PLATFORM_WIDTH #блоки платформы ставятся на ширине блоков
         y += PLATFORM_HEIGHT    #то же самое и с высотой

@@ -5,29 +5,51 @@ from pygame import *
 import pyganim
 import os
 
-MOVE_SPEED = 7
-WIDTH = 22
-HEIGHT = 32
+MOVE_SPEED = 3
+WIDTH = 40
+HEIGHT = 90
 COLOR =  "#888888"
-JUMP_POWER = 10
-GRAVITY = 0.35 # Сила, которая будет тянуть нас вниз
-ANIMATION_DELAY = 0.1 # скорость смены кадров
+JUMP_POWER = 17
+GRAVITY = 0.98 # Сила, которая будет тянуть нас вниз
+ANIMATION_DELAY = 0.05 # скорость смены кадров
 ICON_DIR = os.path.dirname(__file__) #  Полный путь к каталогу с файлами
 
-ANIMATION_RIGHT = [('%s/mario/r1.png' % ICON_DIR),
-            ('%s/mario/r2.png' % ICON_DIR),
-            ('%s/mario/r3.png' % ICON_DIR),
-            ('%s/mario/r4.png' % ICON_DIR),
-            ('%s/mario/r5.png' % ICON_DIR)]
-ANIMATION_LEFT = [('%s/mario/l1.png' % ICON_DIR),
-            ('%s/mario/l2.png' % ICON_DIR),
-            ('%s/mario/l3.png' % ICON_DIR),
-            ('%s/mario/l4.png' % ICON_DIR),
-            ('%s/mario/l5.png' % ICON_DIR)]
-ANIMATION_JUMP_LEFT = [('%s/mario/jl.png' % ICON_DIR, 0.1)]
-ANIMATION_JUMP_RIGHT = [('%s/mario/jr.png' % ICON_DIR, 0.1)]
-ANIMATION_JUMP = [('%s/mario/j.png' % ICON_DIR, 0.1)]
-ANIMATION_STAY = [('%s/mario/0.png' % ICON_DIR, 0.1)]
+ANIMATION_RIGHT = [('%s/mario/Walk_00001.png' % ICON_DIR),
+            ('%s/mario/Walk_00002.png' % ICON_DIR),
+            ('%s/mario/Walk_00003.png' % ICON_DIR),
+            ('%s/mario/Walk_00004.png' % ICON_DIR),
+            ('%s/mario/Walk_00005.png' % ICON_DIR),
+            ('%s/mario/Walk_00006.png' % ICON_DIR),
+            ('%s/mario/Walk_00007.png' % ICON_DIR),
+            ('%s/mario/Walk_00008.png' % ICON_DIR),
+            ('%s/mario/Walk_00009.png' % ICON_DIR),
+            ('%s/mario/Walk_00010.png' % ICON_DIR),
+            ('%s/mario/Walk_00011.png' % ICON_DIR),
+            ('%s/mario/Walk_00012.png' % ICON_DIR),
+            ('%s/mario/Walk_00013.png' % ICON_DIR),
+            ('%s/mario/Walk_00014.png' % ICON_DIR),
+            ('%s/mario/Walk_00015.png' % ICON_DIR),
+            ('%s/mario/Walk_00016.png' % ICON_DIR)]
+ANIMATION_LEFT = [('%s/mario/Walk_00001-f.png' % ICON_DIR),
+            ('%s/mario/Walk_00002-f.png' % ICON_DIR),
+            ('%s/mario/Walk_00003-f.png' % ICON_DIR),
+            ('%s/mario/Walk_00004-f.png' % ICON_DIR),
+            ('%s/mario/Walk_00005-f.png' % ICON_DIR),
+            ('%s/mario/Walk_00006-f.png' % ICON_DIR),
+            ('%s/mario/Walk_00007-f.png' % ICON_DIR),
+            ('%s/mario/Walk_00008-f.png' % ICON_DIR),
+            ('%s/mario/Walk_00009-f.png' % ICON_DIR),
+            ('%s/mario/Walk_00010-f.png' % ICON_DIR),
+            ('%s/mario/Walk_00011-f.png' % ICON_DIR),
+            ('%s/mario/Walk_00012-f.png' % ICON_DIR),
+            ('%s/mario/Walk_00013-f.png' % ICON_DIR),
+            ('%s/mario/Walk_00014-f.png' % ICON_DIR),
+            ('%s/mario/Walk_00015-f.png' % ICON_DIR),
+            ('%s/mario/Walk_00016-f.png' % ICON_DIR)]
+ANIMATION_JUMP_LEFT = [('%s/mario/Jumpl.png' % ICON_DIR, 0.1)]
+ANIMATION_JUMP_RIGHT = [('%s/mario/Jumpr.png' % ICON_DIR, 0.1)]
+ANIMATION_JUMP = [('%s/mario/Jumpi.png' % ICON_DIR, 0.1)]
+ANIMATION_STAY = [('%s/mario/Idle.png' % ICON_DIR, 0.1)]
 
 class Player(sprite.Sprite):
     def __init__(self, x, y):
