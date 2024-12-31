@@ -122,7 +122,7 @@ def main():
                 right = True
 
 
-            if e.type == KEYUP and e.key == K_w:
+            if e.type == KEYUP and e.key == K_SPACE:
                 up = False
             if e.type == KEYUP and e.key == K_d:
                 right = False
