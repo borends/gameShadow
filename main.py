@@ -40,7 +40,7 @@ def camera_configure(camera, target_rect):
 def main():
     pygame.init() # Инициация PyGame, обязательная строчка 
     screen = pygame.display.set_mode(DISPLAY) # Создаем окошко
-    pygame.display.set_caption("Super Mario Boy") # Пишем в шапку
+    pygame.display.set_caption("Game Shadow") # Пишем в шапку
     bg = Surface((WIN_WIDTH,WIN_HEIGHT)) # Создание видимой поверхности
                                          # будем использовать как фон
     bg.fill(Color(BACKGROUND_COLOR))     # Заливаем поверхность сплошным цветом
