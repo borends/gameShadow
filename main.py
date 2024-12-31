@@ -114,7 +114,7 @@ def main():
         for e in pygame.event.get(): # Обрабатываем события
             if e.type == QUIT:
                 raise SystemExit("QUIT")
-            if e.type == KEYDOWN and e.key == K_w:
+            if e.type == KEYDOWN and e.key == K_SPACE:
                 up = True
             if e.type == KEYDOWN and e.key == K_a:
                 left = True
