@@ -5,8 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9ef8394e-7493-48e6-8ca4-31fc7db042b1" name="Changes" comment="MegaChel228">
-      <change beforePath="$PROJECT_DIR$/.idea/gameShadow.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gameShadow.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -26,7 +24,7 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/borends/gameShadow.git&quot;,
-    &quot;accountId&quot;: &quot;28f5fea5-7bac-47ad-9a11-aeaea610dcf3&quot;
+    &quot;accountId&quot;: &quot;bba2530f-b8b7-4bac-8d89-5d1b85cc5194&quot;
   }
 }</component>
   <component name="ProjectColorInfo">{
@@ -44,7 +42,9 @@
     &quot;Python.platformerhabrahabr.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/New/Downloads/Telegram Desktop/TabNine-1.179.0.zip&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
 }</component>
   <component name="RunManager">
@@ -74,7 +74,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-python-sdk-d7ad00fb9fc3-c546a90a8094-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-242.23726.102" />
+        <option value="bundled-python-sdk-495700d161d3-aa17d162503b-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-243.22562.220" />
       </set>
     </attachedChunks>
   </component>
@@ -95,7 +95,31 @@
       <option name="project" value="LOCAL" />
       <updated>1735365802927</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="MegaChel228">
+      <option name="closed" value="true" />
+      <created>1735636789310</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1735636789310</updated>
+    </task>
+    <task id="LOCAL-00003" summary="MegaChel228">
+      <option name="closed" value="true" />
+      <created>1735636795752</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1735636795752</updated>
+    </task>
+    <task id="LOCAL-00004" summary="MegaChel228">
+      <option name="closed" value="true" />
+      <created>1735636821702</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1735636821702</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
