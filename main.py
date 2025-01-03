@@ -6,6 +6,7 @@ import pygame
 from pygame import *
 from player import *
 from blocks import *
+from enemy import Enemy  # Add this line to import the Enemy class
 
 #Объявляем переменные
 WIN_WIDTH = 1280 #Ширина создаваемого окна
@@ -54,6 +55,7 @@ def main():
     jumppads = []
     grass = []
     creates = [] # то, во что мы будем врезаться или опираться
+    enemies = []  # Add this line to create a list for enemies
 
     entities.add(hero)
            
@@ -65,7 +67,7 @@ def main():
        "-                                                 -",
        "-                                                 -",
        "-                                                 -",
-       "-                                                 -",
+       "-                     E                           -",
        "-                                                 -",
        "-                                                 -",
        "--                                                -",
@@ -99,6 +101,10 @@ def main():
                 pf = Grass(x,y)
                 entities.add(pf)
                 grass.append(pf)
+            if col == "E":  # Add this block to create an enemy
+                enemy = Enemy(x, y, x, x + 100)  # Enemy moves 100 pixels right
+                entities.add(enemy)
+                enemies.append(enemy)
 
             x += PLATFORM_WIDTH #блоки платформы ставятся на ширине блоков
         y += PLATFORM_HEIGHT    #то же самое и с высотой
@@ -134,7 +140,10 @@ def main():
 
         camera.update(hero) # центризируем камеру относительно персонажа
         hero.update(left, right, up,platforms) # передвижение
-        #entities.draw(screen) # отображение
+        
+        for enemy in enemies:  # Add this block to update enemies
+            enemy.update()
+        
         for e in entities:
             screen.blit(e.image, camera.apply(e))
         
