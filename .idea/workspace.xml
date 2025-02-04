@@ -5,10 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9ef8394e-7493-48e6-8ca4-31fc7db042b1" name="Changes" comment="MegaChel228">
-      <change afterPath="$PROJECT_DIR$/blocks/saw.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sounds/background_music.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sounds/death.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sounds/enemy.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sounds/jump.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sounds/walk.wav" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blocks.py" beforeDir="false" afterPath="$PROJECT_DIR$/blocks.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/enemy.py" beforeDir="false" afterPath="$PROJECT_DIR$/enemy.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -53,6 +55,7 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/sounds" />
       <recent name="$PROJECT_DIR$/blocks" />
     </key>
   </component>
@@ -168,7 +171,15 @@
       <option name="project" value="LOCAL" />
       <updated>1735893364185</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="MegaChel228">
+      <option name="closed" value="true" />
+      <created>1738598050528</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1738598050528</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
