@@ -1,6 +1,5 @@
 import pygame
 import random
-
 import map
 from player import *
 from map import *
@@ -8,6 +7,7 @@ from blocks import *
 import os
 import csv
 import pygame.mixer
+
 
 class DustParticle(pygame.sprite.Sprite):
     def __init__(self, x, y):
@@ -23,6 +23,7 @@ class DustParticle(pygame.sprite.Sprite):
         self.rect.y = int(self.y_float)
         if self.rect.bottom < 0:
             self.kill()
+
 
 class Enemy(pygame.sprite.Sprite):
     def __init__(self, x, y):
@@ -52,7 +53,8 @@ class Enemy(pygame.sprite.Sprite):
         self.hitbox.center = self.rect.center
 
     def draw_hitbox(self, surface):
-        pygame.draw.rect(surface, (255, 0, 0), self.hitbox, 2)  # Draw hitbox for debugging
+        pygame.draw.rect(surface, (255, 0, 0), self.hitbox, 2)
+
 
 class Trigger(pygame.sprite.Sprite):
     def __init__(self, x, y, action):
@@ -60,11 +62,13 @@ class Trigger(pygame.sprite.Sprite):
         self.rect = pygame.Rect(x, y, 32, 32)
         self.action = action
 
+
 # Объявляем переменные
 WIN_WIDTH = 1280
 WIN_HEIGHT = 720
 DISPLAY = (WIN_WIDTH, WIN_HEIGHT)
 BACKGROUND_COLOR = "#778899"
+
 
 class Camera(object):
     def __init__(self, camera_func, width, height):
@@ -81,17 +85,19 @@ class Camera(object):
         self.state.x += (self.target_state.x - self.state.x) * 0.05
         self.state.y += (self.target_state.y - self.state.y) * 0.05
 
+
 def camera_configure(camera, target_rect):
     l, t, _, _ = target_rect
     _, _, w, h = camera
-    l, t = -l+WIN_WIDTH / 2, -t+WIN_HEIGHT / 2
+    l, t = -l + WIN_WIDTH / 2, -t + WIN_HEIGHT / 2
 
     l = min(0, l)
-    l = max(-(camera.width-WIN_WIDTH), l)
-    t = max(-(camera.height-WIN_HEIGHT), t)
+    l = max(-(camera.width - WIN_WIDTH), l)
+    t = max(-(camera.height - WIN_HEIGHT), t)
     t = min(0, t)
 
     return Rect(l, t, w, h)
+
 
 def show_start_screen(screen):
     background = pygame.Surface(screen.get_size())
@@ -105,11 +111,11 @@ def show_start_screen(screen):
 
     font = pygame.font.Font(None, 72)
     text = font.render("SHADOW", True, (200, 200, 200))
-    text_rect = text.get_rect(center=(WIN_WIDTH/2, WIN_HEIGHT/2))
+    text_rect = text.get_rect(center=(WIN_WIDTH / 2, WIN_HEIGHT / 2))
 
     font_small = pygame.font.Font(None, 36)
     instruction = font_small.render("Press Enter to start", True, (150, 150, 150))
-    instruction_rect = instruction.get_rect(center=(WIN_WIDTH/2, WIN_HEIGHT/2 + 100))
+    instruction_rect = instruction.get_rect(center=(WIN_WIDTH / 2, WIN_HEIGHT / 2 + 100))
 
     screen.blit(background, (0, 0))
     screen.blit(text, text_rect)
@@ -125,6 +131,7 @@ def show_start_screen(screen):
                 waiting = False
     return True
 
+
 def show_death_screen(screen):
     fade_surface = pygame.Surface((WIN_WIDTH, WIN_HEIGHT))
     fade_surface.fill((0, 0, 0))
@@ -137,13 +144,29 @@ def show_death_screen(screen):
             if event.type == pygame.QUIT:
                 return False
     return True
-def show_end_screen(screen):
-    font = pygame.font.Font(None, 72)
-    text = font.render("Congratulations! You've completed the game!", True, (255, 255, 255))
-    text_rect = text.get_rect(center=(WIN_WIDTH/2, WIN_HEIGHT/2))
 
-    screen.fill((0, 0, 0))
+
+def show_end_screen(screen):
+    background = pygame.Surface(screen.get_size())
+    background = background.convert()
+    background.fill((0, 0, 0))
+
+    for _ in range(100):
+        x = random.randint(0, WIN_WIDTH)
+        y = random.randint(0, WIN_HEIGHT)
+        pygame.draw.circle(background, (20, 20, 20), (x, y), random.randint(20, 100))
+
+    font = pygame.font.Font(None, 72)
+    text = font.render("Wake up", True, (200, 200, 200))
+    text_rect = text.get_rect(center=(WIN_WIDTH / 2, WIN_HEIGHT / 2))
+
+    font_small = pygame.font.Font(None, 36)
+    instruction = font_small.render("Press Enter to start", True, (150, 150, 150))
+    instruction_rect = instruction.get_rect(center=(WIN_WIDTH / 2, WIN_HEIGHT / 2 + 100))
+
+    screen.blit(background, (0, 0))
     screen.blit(text, text_rect)
+    screen.blit(instruction, instruction_rect)
     pygame.display.flip()
 
     waiting = True
@@ -153,16 +176,42 @@ def show_end_screen(screen):
                 return False
             if event.type == pygame.KEYDOWN and event.key == pygame.K_RETURN:
                 waiting = False
+
+    pygame.mixer.music.fadeout(5000)
+
+    for alpha in range(0, 255, 5):
+        background.set_alpha(alpha)
+        screen.blit(background, (0, 0))
+        screen.blit(text, text_rect)
+        screen.blit(instruction, instruction_rect)
+        pygame.display.flip()
+        pygame.time.delay(50)
+
+    pygame.time.delay(2000)
+
+    for alpha in range(255, 0, -5):
+        background.set_alpha(alpha)
+        screen.blit(background, (0, 0))
+        screen.blit(text, text_rect)
+        screen.blit(instruction, instruction_rect)
+        pygame.display.flip()
+        pygame.time.delay(50)
+
     return True
 
 
 def load_sound(filename):
     sound = pygame.mixer.Sound(os.path.join('sounds', filename))
     return sound
+
+
 def save_game(player):
     with open('save_game.csv', 'w', newline='') as file:
         writer = csv.writer(file)
         writer.writerow([player.rect.x, player.rect.y])
+
+        writer.writerow([player.rect.x, player.rect.y])
+
 
 def load_game():
     try:
@@ -172,6 +221,7 @@ def load_game():
             return int(row[0]), int(row[1])
     except (FileNotFoundError, StopIteration, ValueError):
         return None
+
 
 def create_background_layers():
     layers = []
@@ -188,6 +238,7 @@ def create_background_layers():
         layers.append(layer)
     return layers
 
+
 def create_foreground():
     foreground = pygame.Surface((WIN_WIDTH, WIN_HEIGHT), pygame.SRCALPHA)
     for _ in range(50):
@@ -199,6 +250,21 @@ def create_foreground():
         pygame.draw.circle(foreground, color, (x, y), radius)
     return foreground
 
+
+def create_vignette(width, height):
+    vignette = pygame.Surface((width, height), pygame.SRCALPHA)
+    center = (width // 2, height // 2)
+    max_dist = (center[0] ** 2 + center[1] ** 2) ** 0.5
+
+    for x in range(width):
+        for y in range(height):
+            dist = ((x - center[0]) ** 2 + (y - center[1]) ** 2) ** 0.5
+            alpha = int(255 * (dist / max_dist) ** 2)  # Квадратичная функция для более резкого перехода
+            vignette.set_at((x, y), (0, 0, 0, alpha))
+
+    return vignette
+
+
 def main():
     # Загрузка звуков
     pygame.mixer.init()
@@ -209,6 +275,7 @@ def main():
     pygame.mixer.music.load(os.path.join('sounds', 'background_music.mp3'))
     dust_particles = pygame.sprite.Group()
     foreground = create_foreground()
+    vignette = create_vignette(WIN_WIDTH, WIN_HEIGHT)
 
     # Настройка громкости
     sound_walk.set_volume(0.1)
@@ -227,7 +294,7 @@ def main():
         return
 
     # Начать воспроизведение фоновой музыки
-    pygame.mixer.music.play(-1)  # -1 означает бесконечное повторение
+    pygame.mixer.music.play(-1)
 
     bg_layers = create_background_layers()
     bg_speeds = [0.2, 0.5, 0.8]  # Скорости движения слоев
@@ -237,20 +304,22 @@ def main():
     if saved_position:
         hero = Player(saved_position[0], saved_position[1])
     else:
-        hero = Player(100, 55)  # Начальная позиция, если нет сохранения
+        hero = Player(100, 55)
 
     left = right = up = False
-    is_jumping = False  # Флаг для отслеживания состояния прыжка
+    is_jumping = False
 
     entities = pygame.sprite.Group()
     platforms = []
     grass = []
+    chains = []
     enemies = pygame.sprite.Group()
-    font = pygame.font.Font(None, 36)  # Создаем объект шрифта для отображения текста
+    font = pygame.font.Font(None, 36)
     entities.add(hero)
 
-    triggers.add(Trigger(1000, 500, "change_music"))
-
+    triggers.add(Trigger(13838, 1062, "end_game"))
+    triggers.add(Trigger(5605, 1062, "save_game"))
+    triggers.add(Trigger(9133, 902, "save_game"))
 
     level = map.LEVEL
 
@@ -271,6 +340,10 @@ def main():
                 entities.add(enemy)
                 enemies.add(enemy)
                 enemy.start_x = x
+            if col == "C":
+                pf = Chain(x, y)
+                entities.add(pf)
+                chains.append(pf)
             x += PLATFORM_WIDTH
         y += PLATFORM_HEIGHT
         x = 0
@@ -280,7 +353,6 @@ def main():
 
     camera = Camera(camera_configure, total_level_width, total_level_height)
     bg_offsets = [0, 0, 0]
-
     while True:
         timer.tick(60)
         for e in pygame.event.get():
@@ -291,17 +363,17 @@ def main():
                 save_game(hero)
                 raise SystemExit("QUIT")
             if e.type == KEYDOWN and e.key == K_SPACE:
-                if not is_jumping:  # Проверяем, не в прыжке ли уже герой
+                if not is_jumping:
                     up = True
                     is_jumping = True
                     sound_jump.play()
             if e.type == KEYDOWN and e.key == K_a:
                 left = True
-                if not is_jumping:  # Воспроизводим звук ходьбы только если не в прыжке
+                if not is_jumping:
                     sound_walk.play(-1)
             if e.type == KEYDOWN and e.key == K_d:
                 right = True
-                if not is_jumping:  # Воспроизводим звук ходьбы только если не в прыжке
+                if not is_jumping:
                     sound_walk.play(-1)
             if e.type == KEYUP and e.key == K_SPACE:
                 up = False
@@ -315,7 +387,7 @@ def main():
 
         screen.fill((200, 200, 200))  # Светло-серый фон
 
-        # Отрисовка фоновых слоев с параллакс-эффектом
+        # Отрисовка фоновых слоев
         for i, layer in enumerate(bg_layers):
             bg_offsets[i] -= bg_speeds[i]
             if bg_offsets[i] <= -WIN_WIDTH:
@@ -329,16 +401,42 @@ def main():
 
         trigger_hit = pygame.sprite.spritecollide(hero, triggers, False)
         for trigger in trigger_hit:
-            if trigger.action == "save":
-                save_game(hero)
-            elif trigger.action == "change_music":
-                # Implement smooth music transition here
-                pass
+            if trigger.action == "end_game":
+                sound_walk.set_volume(0)
+                pygame.mixer.music.fadeout(5000)
 
-        # Проверка столкновения с врагом
-        # Проверка столкновения с врагом
+                font = pygame.font.Font(None, 72)
+                text = font.render("Wake up", True, (255, 255, 255))
+                text_rect = text.get_rect(center=(WIN_WIDTH / 2, WIN_HEIGHT / 2))
+
+                for alpha in range(0, 255, 5):
+                    screen.fill((0, 0, 0))
+                    text.set_alpha(alpha)
+                    screen.blit(text, text_rect)
+                    pygame.display.flip()
+                    pygame.time.delay(50)
+
+                pygame.time.delay(2000)
+
+                for alpha in range(255, 0, -5):
+                    screen.fill((0, 0, 0))
+                    text.set_alpha(alpha)
+                    screen.blit(text, text_rect)
+                    pygame.display.flip()
+                    pygame.time.delay(50)
+
+                with open('save_game.csv', 'w', newline='') as file:
+                    writer = csv.writer(file)
+                    writer.writerow([100, 1062])
+
+                return
+            elif trigger.action == "save_game":
+                save_game(hero)
+
         if pygame.sprite.spritecollide(hero, enemies, False):
             sound_death.play()
+            sound_walk.stop()
+            sound_enemy.stop()
             if not show_death_screen(screen):
                 save_game(hero)
                 return
@@ -347,8 +445,8 @@ def main():
                 hero.rect.x, hero.rect.y = saved_position
             else:
                 hero.rect.x, hero.rect.y = 100, 55
-            left = right = up = False  # Reset movement flags
-            hero.xvel = 0  # Reset horizontal velocity
+            left = right = up = False
+            hero.xvel = 0
         # Воспроизведение звука врага
         for enemy in enemies:
             if abs(hero.rect.x - enemy.rect.x) < 300:  # Если герой близко к врагу
@@ -358,20 +456,22 @@ def main():
         for entity in entities:
             screen.blit(entity.image, camera.apply(entity))
         position_text = font.render(f"X: {hero.rect.x}, Y: {hero.rect.y}", True, (255, 0, 0))
-        screen.blit(position_text, (10, 10))  # Отображаем текст в верхнем левом углу
+        screen.blit(position_text, (10, 10))
 
-        if random.random() < 0.1:  # 10% chance each frame
+        if random.random() < 0.1:
             dust_particles.add(DustParticle(random.randint(0, WIN_WIDTH), WIN_HEIGHT))
 
         dust_particles.update()
         dust_particles.draw(screen)
 
         screen.blit(foreground, (0, 0))
+        screen.blit(vignette, (0, 0))
 
         pygame.display.update()
 
         for trigger in triggers:
             pygame.draw.rect(screen, (0, 255, 0), camera.apply(trigger), 2)
+
 
 if __name__ == "__main__":
     main()

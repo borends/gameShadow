@@ -1,6 +1,3 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-
 from pygame import *
 import pyganim
 import os
@@ -10,7 +7,7 @@ WIDTH = 40
 HEIGHT = 90
 COLOR =  "#888888"
 JUMP_POWER = 17
-GRAVITY = 0.98 # Сила, которая будет тянуть нас вниз
+GRAVITY = 0.98 # Сила тяжести
 ANIMATION_DELAY = 0.05 # скорость смены кадров
 ICON_DIR = os.path.dirname(__file__) #  Полный путь к каталогу с файлами
 
