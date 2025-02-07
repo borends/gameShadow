@@ -5,45 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9ef8394e-7493-48e6-8ca4-31fc7db042b1" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/map.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mario/Idle.png" beforeDir="false" afterPath="$PROJECT_DIR$/sprites/Idle.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mario/Jumpi.png" beforeDir="false" afterPath="$PROJECT_DIR$/sprites/Jumpi.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mario/Jumpl.png" beforeDir="false" afterPath="$PROJECT_DIR$/sprites/Jumpl.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mario/Jumpr.png" beforeDir="false" afterPath="$PROJECT_DIR$/sprites/Jumpr.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mario/Walk_00001-f.png" beforeDir="false" afterPath="$PROJECT_DIR$/sprites/Walk_00001-f.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mario/Walk_00001.png" beforeDir="false" afterPath="$PROJECT_DIR$/sprites/Walk_00001.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mario/Walk_00002-f.png" beforeDir="false" afterPath="$PROJECT_DIR$/sprites/Walk_00002-f.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mario/Walk_00002.png" beforeDir="false" afterPath="$PROJECT_DIR$/sprites/Walk_00002.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mario/Walk_00003-f.png" beforeDir="false" afterPath="$PROJECT_DIR$/sprites/Walk_00003-f.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mario/Walk_00003.png" beforeDir="false" afterPath="$PROJECT_DIR$/sprites/Walk_00003.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mario/Walk_00004-f.png" beforeDir="false" afterPath="$PROJECT_DIR$/sprites/Walk_00004-f.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mario/Walk_00004.png" beforeDir="false" afterPath="$PROJECT_DIR$/sprites/Walk_00004.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mario/Walk_00005-f.png" beforeDir="false" afterPath="$PROJECT_DIR$/sprites/Walk_00005-f.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mario/Walk_00005.png" beforeDir="false" afterPath="$PROJECT_DIR$/sprites/Walk_00005.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mario/Walk_00006-f.png" beforeDir="false" afterPath="$PROJECT_DIR$/sprites/Walk_00006-f.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mario/Walk_00006.png" beforeDir="false" afterPath="$PROJECT_DIR$/sprites/Walk_00006.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mario/Walk_00007-f.png" beforeDir="false" afterPath="$PROJECT_DIR$/sprites/Walk_00007-f.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mario/Walk_00007.png" beforeDir="false" afterPath="$PROJECT_DIR$/sprites/Walk_00007.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mario/Walk_00008-f.png" beforeDir="false" afterPath="$PROJECT_DIR$/sprites/Walk_00008-f.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mario/Walk_00008.png" beforeDir="false" afterPath="$PROJECT_DIR$/sprites/Walk_00008.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mario/Walk_00009-f.png" beforeDir="false" afterPath="$PROJECT_DIR$/sprites/Walk_00009-f.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mario/Walk_00009.png" beforeDir="false" afterPath="$PROJECT_DIR$/sprites/Walk_00009.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mario/Walk_00010-f.png" beforeDir="false" afterPath="$PROJECT_DIR$/sprites/Walk_00010-f.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mario/Walk_00010.png" beforeDir="false" afterPath="$PROJECT_DIR$/sprites/Walk_00010.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mario/Walk_00011-f.png" beforeDir="false" afterPath="$PROJECT_DIR$/sprites/Walk_00011-f.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mario/Walk_00011.png" beforeDir="false" afterPath="$PROJECT_DIR$/sprites/Walk_00011.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mario/Walk_00012-f.png" beforeDir="false" afterPath="$PROJECT_DIR$/sprites/Walk_00012-f.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mario/Walk_00012.png" beforeDir="false" afterPath="$PROJECT_DIR$/sprites/Walk_00012.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mario/Walk_00013-f.png" beforeDir="false" afterPath="$PROJECT_DIR$/sprites/Walk_00013-f.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mario/Walk_00013.png" beforeDir="false" afterPath="$PROJECT_DIR$/sprites/Walk_00013.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mario/Walk_00014-f.png" beforeDir="false" afterPath="$PROJECT_DIR$/sprites/Walk_00014-f.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mario/Walk_00014.png" beforeDir="false" afterPath="$PROJECT_DIR$/sprites/Walk_00014.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mario/Walk_00015-f.png" beforeDir="false" afterPath="$PROJECT_DIR$/sprites/Walk_00015-f.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mario/Walk_00015.png" beforeDir="false" afterPath="$PROJECT_DIR$/sprites/Walk_00015.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mario/Walk_00016-f.png" beforeDir="false" afterPath="$PROJECT_DIR$/sprites/Walk_00016-f.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mario/Walk_00016.png" beforeDir="false" afterPath="$PROJECT_DIR$/sprites/Walk_00016.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/player.py" beforeDir="false" afterPath="$PROJECT_DIR$/player.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/save_game.csv" beforeDir="false" afterPath="$PROJECT_DIR$/save_game.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -64,7 +28,7 @@
   <component name="GithubPullRequestsUISettings"><![CDATA[{
   "selectedUrlAndAccountId": {
     "url": "https://github.com/borends/gameShadow.git",
-    "accountId": "40ccc5bb-9dd6-41a6-8883-b6f1f81aae22"
+    "accountId": "28f5fea5-7bac-47ad-9a11-aeaea610dcf3"
   }
 }]]></component>
   <component name="ProjectColorInfo">{
@@ -111,7 +75,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-python-sdk-0e3be3396995-c546a90a8094-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-242.23339.19" />
+        <option value="bundled-python-sdk-d7ad00fb9fc3-c546a90a8094-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-242.23726.102" />
       </set>
     </attachedChunks>
   </component>
